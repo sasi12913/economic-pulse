@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --saffron: #FF9933;
+    --saffron-dark: #E8842A;
+    --saffron-light: #FFF3E6;
+    --india-green: #138808;
+    --india-green-dark: #0e6606;
+    --india-green-light: #E8F5E6;
+    --navy: #000080;
+    --navy-mid: #0a0a4e;
+    --navy-light: #E8E8F5;
+    --chakra-blue: #0000CD;
+    --warm-white: #F8F7F4;
+    --warm-white-2: #F2F0EC;
+    --deep-text: #1a1a2e;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--warm-white);
+    color: var(--deep-text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-serif-heading {
+    font-family: 'Newsreader', Georgia, serif;
+  }
+
+  code, .font-mono, kbd {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}
+
+/* ============================================
+   TRICOLOUR ACCENT SYSTEM
+   ============================================ */
+.accent-saffron { color: var(--saffron); }
+.accent-green { color: var(--india-green); }
+.accent-navy { color: var(--navy); }
+.bg-saffron { background-color: var(--saffron); }
+.bg-india-green { background-color: var(--india-green); }
+.bg-navy { background-color: var(--navy); }
+.bg-warm-white { background-color: var(--warm-white); }
+.border-saffron { border-color: var(--saffron); }
+.border-india-green { border-color: var(--india-green); }
+.border-navy { border-color: var(--navy); }
+
+/* Tricolour accent bar */
+.tricolour-bar {
+  background: linear-gradient(90deg, var(--saffron) 0%, var(--saffron) 33.33%, #ffffff 33.33%, #ffffff 66.66%, var(--india-green) 66.66%, var(--india-green) 100%);
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--warm-white-2);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ============================================
+   SIDEBAR NAVIGATION
+   ============================================ */
+.sidebar-nav {
+  width: 64px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  will-change: width;
+}
+.sidebar-nav.expanded {
+  width: 240px;
+}
+
+/* ============================================
+   PULSE CARD ANIMATIONS
+   ============================================ */
+.pulse-card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s ease;
+}
+.pulse-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px -8px rgba(0, 0, 128, 0.12);
+}
+
+/* ============================================
+   ANIMATED INDICATORS
+   ============================================ */
+.live-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--india-green);
+  box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.4);
+  animation: live-pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes live-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(19, 136, 8, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(19, 136, 8, 0); }
+}
+
+.saffron-pulse {
+  animation: saffron-pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes saffron-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(255, 153, 51, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0); }
+}
+
+/* ============================================
+   NUMBER COUNT-UP ANIMATION
+   ============================================ */
+.count-up {
+  animation: countUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   SVG PATH DRAWING ANIMATION
+   ============================================ */
+.path-draw {
+  stroke-dashoffset: 0;
+  animation: pathDraw 2s ease-in-out forwards;
+}
+
+@keyframes pathDraw {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================
+   LOADING SKELETON
+   ============================================ */
+.skeleton {
+  background: linear-gradient(90deg, #f0ece6 25%, #e8e4de 50%, #f0ece6 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================================
+   INTRO CINEMATIC
+   ============================================ */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #03030f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ============================================
+   CHART TOOLTIP STYLES
+   ============================================ */
+.recharts-tooltip-wrapper {
+  filter: drop-shadow(0 4px 16px rgba(0,0,128,0.15));
+}
+
+/* ============================================
+   COMMAND PALETTE
+   ============================================ */
+.command-palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(3, 3, 15, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.command-palette {
+  background: #ffffff;
+  border: 1px solid #e2e0db;
+  border-radius: 16px;
+  box-shadow: 0 32px 80px -12px rgba(0, 0, 128, 0.25), 0 0 0 1px rgba(0,0,128,0.05);
+  max-width: 600px;
+  width: 90%;
+  overflow: hidden;
+}
+
+/* ============================================
+   PAGE TRANSITIONS
+   ============================================ */
+.page-enter {
+  animation: pageEnter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   ECONOMIC SYSTEM GRAPH
+   ============================================ */
+.economy-node {
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.economy-node:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 4px 12px rgba(19, 136, 8, 0.3));
+}
+.economy-node.dimmed {
+  opacity: 0.25;
+}
+.economy-node.active {
+  filter: drop-shadow(0 0 16px rgba(255, 153, 51, 0.6));
+}
+
+.economy-edge {
+  transition: opacity 0.3s ease, stroke-width 0.3s ease;
+}
+.economy-edge.active-edge {
+  stroke-dasharray: 6 3;
+  animation: edgeFlow 1.5s linear infinite;
+}
+
+@keyframes edgeFlow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -18; }
+}
+
+/* ============================================
+   DATA QUALITY BADGES
+   ============================================ */
+.badge-high { background: var(--india-green-light); color: var(--india-green-dark); border: 1px solid rgba(19,136,8,0.2); }
+.badge-medium { background: #FFF8E6; color: #92400e; border: 1px solid rgba(255,153,51,0.3); }
+.badge-limited { background: #FEF2F2; color: #991b1b; border: 1px solid rgba(239,68,68,0.2); }
+
+/* ============================================
+   EVIDENCE MODE TOGGLE
+   ============================================ */
+.evidence-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: var(--warm-white-2);
+  border-radius: 24px;
+  padding: 3px;
+  border: 1px solid #e2e0db;
+  gap: 2px;
+}
+.evidence-toggle button {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.evidence-toggle button.active {
+  background: var(--navy);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,128,0.25);
+}
+
+/* ============================================
+   FOLLOW THE ECONOMY JOURNEY
+   ============================================ */
+.journey-node {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.journey-node::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, var(--saffron), transparent);
+  transform: translateX(-50%);
+}
+.journey-node:last-child::after { display: none; }
+
+/* ============================================
+   FOCUS / ACCESSIBILITY STATES
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+.content-with-sidebar {
+  margin-left: 64px;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.content-with-sidebar.sidebar-expanded {
+  margin-left: 240px;
+}
+
+@media (max-width: 768px) {
+  .content-with-sidebar,
+  .content-with-sidebar.sidebar-expanded {
+    margin-left: 0;
+  }
+  .sidebar-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    height: 56px;
+    z-index: 50;
+    flex-direction: row;
+    border-top: 1px solid rgba(0,0,128,0.1);
+    border-right: none;
+  }
+}
+
+/* ============================================
+   GLASSMORPHISM (SUBTLE USE ONLY)
+   ============================================ */
+.glass-subtle {
+  background: rgba(248, 247, 244, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ============================================
+   INDIA MAP GLOW
+   ============================================ */
+.india-map-glow {
+  filter: drop-shadow(0 0 12px rgba(255, 153, 51, 0.3)) drop-shadow(0 0 30px rgba(19, 136, 8, 0.15));
+}
+
+/* ============================================
+   TRANSMISSION FLOW ANIMATION
+   ============================================ */
+.flow-arrow {
+  animation: flowDown 1.2s ease-in-out infinite;
+}
+
+@keyframes flowDown {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(4px); opacity: 1; }
+}
+
+/* ============================================
+   SHAP BAR ANIMATION
+   ============================================ */
+.shap-bar {
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   TRICOLOUR DIVIDER
+   ============================================ */
+.tricolour-divider {
+  height: 3px;
+  background: linear-gradient(90deg, var(--saffron) 0%, var(--saffron) 33%, transparent 33%, transparent 34%, #ffffff 34%, #ffffff 66%, transparent 66%, transparent 67%, var(--india-green) 67%);
+}
+
+/* ============================================
+   PREMIUM CARD BORDERS
+   ============================================ */
+.card-premium {
+  border: 1px solid #e8e4dc;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0,0,128,0.04), 0 4px 16px rgba(0,0,128,0.03);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.card-premium:hover {
+  border-color: rgba(255,153,51,0.3);
+  box-shadow: 0 4px 24px rgba(0,0,128,0.08);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SECTION LABELS
+   ============================================ */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   DEMO DATA BANNER
+   ============================================ */
+.demo-banner {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 153, 51, 0.05),
+    rgba(255, 153, 51, 0.05) 10px,
+    rgba(255, 248, 240, 0.8) 10px,
+    rgba(255, 248, 240, 0.8) 20px
+  );
+  border: 1px solid rgba(255,153,51,0.3);
+}
